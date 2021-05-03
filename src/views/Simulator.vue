@@ -51,7 +51,44 @@
         </div>
         <Loading :loadingState="loadingState"></Loading>
       </div>
-      <div class="selected-makeup">
+
+
+      <div class="selected-makeup" v-show="videoEyeshadowState">
+        <div class="circle-img">
+          <div v-if="getMakeupSimulator" class="cancel-lip-simulated">
+            <a @click="handleCancelVideo('eyeshadow')" class="cancel-icon"><i class="fas fa-times"></i></a>
+          </div>
+          <img
+            v-if="videoEyeshadowState"
+            class="selected-simu-img fadeIn"
+            
+            :src="eyeshadowSource"
+          />
+          <div v-show="!getMakeupSimulator" class="selected-simu-img empty">
+            <i class="fas fa-magic"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="selected-makeup" v-show="videoBlushState">
+        <div class="circle-img">
+          <div v-if="getMakeupSimulator" class="cancel-lip-simulated">
+            <a @click="handleCancelSimulated" class="cancel-icon"><i class="fas fa-times"></i></a>
+          </div>
+          <img
+            v-if="getMakeupSimulator"
+            class="selected-simu-img fadeIn"
+            
+            :src="getMakeupSimulator.api_image_link ? splitImageURL(getMakeupSimulator.api_image_link) : getMakeupSimulator.image_link"
+          />
+          <div v-show="!getMakeupSimulator" class="selected-simu-img empty">
+            <i class="fas fa-magic"></i>
+          </div>
+        </div>
+      </div>
+
+
+            <div class="selected-makeup" v-show="!videoFeed">
         <div class="circle-img">
           <div v-if="getMakeupSimulator" class="cancel-lip-simulated">
             <a @click="handleCancelSimulated" class="cancel-icon"><i class="fas fa-times"></i></a>
@@ -103,8 +140,8 @@
         </div>
       </div>
 
-      <button @click="openCam">open cam</button>
-      <button @click="closeCam">close cam</button>
+      <button v-show="!videoFeed" @click="openCam">open cam</button>
+      <button v-show="videoFeed" @click="closeCam">close cam</button>
  
       <SimulatorTab></SimulatorTab>
     </div>
@@ -135,6 +172,9 @@ export default {
       simulatedState: false,
       simulatedLevel: 1,
       videoFeed: false,
+      videoEyeshadowState: false,
+      eyeshadowSource: "",
+      videoBlushState: false,
       vedioFeedSource: "http://localhost:5000/api/video_feed"
       
     };
@@ -155,36 +195,55 @@ export default {
   },
   methods: {
     async openCam(){
-      await axios.get("http://localhost:5000/api/opencam");
+      this.handleCancelSimulated() 
+      this.loadingState = true;
+      await axios.get("opencam");
+      this.loadingState = false;
       this.videoFeed = true
       console.log(this.videoFeed) 
     },
     async closeCam(){
       this.videoFeed = false
       console.log(this.videoFeed)
-      await axios.get("http://localhost:5000/api/closecam",{});
+      await axios.get("closecam",{});
       this.$store.dispatch('updateMakeupSimulator', null);
       this.$store.dispatch('updateMakeupState', '');
       this.simulatedState = false;
       this.imageSimulated = null;
     },
-    async videoEyeshadow(form){
- 
-      console.log("videEyeshadow")
-      await axios.post("http://localhost:5000/api/simulator/video/eyeshadow",this.createFormData(form));
-      
-    },
+
 
     createFormData(form) {
       var bodyFormData = new FormData();
-      bodyFormData.append('user_image', form.fileUpload);
+      console.log(form.r_value)
+      // bodyFormData.append('user_image', form.fileUpload);
       bodyFormData.append('user_id', form.userID);
       bodyFormData.append('r_value', form.r_value);
       bodyFormData.append('g_value', form.g_value);
       bodyFormData.append('b_value', form.b_value);
+      console.log(bodyFormData)
       return bodyFormData
       }
     ,
+
+    async videoEyeshadow(form){
+      console.log("videEyeshadow")
+      await axios.post("video/eyeshadow",this.createFormData(form));
+      this.eyeshadowSource = this.splitImageURL(this.getMakeupSimulator.api_image_link)
+      this.videoEyeshadowState = true
+    },
+    async videoEyeshadowOff(){
+      console.log("videEyeshadowOff")
+      await axios.get("video/no_eyeshadow");
+      this.eyeshadowSource = ""
+      this.videoEyeshadowState = false
+    },
+
+    async videoBlush(){
+      console.log("videBlush")
+
+      this.videoBlushState = true
+    },
     wait(ms){
       var start = new Date().getTime();
       var end = start;
@@ -205,6 +264,16 @@ export default {
       this.$store.dispatch('updateMakeupState', '');
       this.simulatedState = false;
       this.imageSimulated = null;
+    },
+    handleCancelVideo(makeupType) {
+      this.$store.dispatch('updateMakeupSimulator', null);
+      this.$store.dispatch('updateMakeupState', '');
+      this.simulatedState = false;
+      this.imageSimulated = null;
+      if (makeupType == 'eyeshadow'){
+        this.videoEyeshadowOff();
+        this.videoEyeshadowState = false;
+        this.eyeshadowSource  = ""}
     },
     readFileImg(imgRes) {
       var reader = new window.FileReader();
@@ -278,7 +347,11 @@ export default {
           // ---------- handle vide feed ----------
           if (this.videoFeed){
             if (this.getMakeupState === 'Eyeshadow') {
+              
               await this.videoEyeshadow(form)
+            }
+            if (this.getMakeupState === 'Blush') {
+              await this.videoBlush()
             }
           }
           this.loadingState = false;

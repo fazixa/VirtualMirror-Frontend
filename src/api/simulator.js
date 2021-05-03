@@ -7,6 +7,7 @@ function createFormData(form) {
   bodyFormData.append('r_value', form.r_value);
   bodyFormData.append('g_value', form.g_value);
   bodyFormData.append('b_value', form.b_value);
+  console.log(bodyFormData)
   return bodyFormData
 }
 
