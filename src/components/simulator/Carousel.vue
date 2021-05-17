@@ -62,6 +62,8 @@ export default {
     eyeshadowState: Boolean,
     blushState: Boolean,
     skinState: Boolean,
+    eyelinerState: Boolean,
+    concealerState:Boolean,
     cheeckState: Boolean,
   },
   computed: {
@@ -80,7 +82,7 @@ export default {
       this.simulatedId = item._id;
       this.rgbValue = item.rgb_value;
       if (this.eyeshadowState) {
-        console.log("in if")
+        console.log("eyeshadowwwwwwwwwwwwwww")
         this.$store.dispatch('updateMakeupState', 'Eyeshadow');
       }
       if (this.lipState) {
@@ -91,6 +93,13 @@ export default {
       }
       if (this.skinState) {
         this.$store.dispatch('updateMakeupState', 'Foundation');
+      }
+      if (this.eyelinerState) {
+        console.log("It's eyelinerrrrrrrrrr")
+        this.$store.dispatch('updateMakeupState', 'Eyeliner');
+      }
+      if (this.concealerState) {
+        this.$store.dispatch('updateMakeupState', 'Concealer');
       }
       this.$store.dispatch('updateMakeupSimulator', item);
     },

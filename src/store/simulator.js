@@ -5,6 +5,8 @@ import {
   getEyeshadowSimulator,
   getBlushSimulator,
   getFoundationSimulator,
+  getEyelinerSimulator,
+  getConcealerSimulator
 
 } from '@/api/simulator';
 
@@ -22,7 +24,8 @@ export default{
       return state.makeupSimulator;
     },
     getMakeupState: state => {
-      // console.log(state.makeupSimulator)
+      console.log("!!!!")
+      console.log(state.makeupState)
       return state.makeupState;
     },
     getMakeupSimulatedImage: state => {
@@ -52,6 +55,8 @@ export default{
       commit('setMakeupState', payload);
     },
     async loadLipSimulated({ commit }, payload) {
+      console.log("hereeeeeeee")
+      console.log(payload)
       commit('setMakeupSimulatedImage', await getLipSimulator(payload));
     },
     async loadEyeshadowSimulated({ commit }, payload) {
@@ -62,6 +67,12 @@ export default{
     },
     async loadFoundationSimulated({ commit }, payload) {
       commit('setMakeupSimulatedImage', await getFoundationSimulator(payload));
+    },
+    async loadEyelinerSimulated({ commit }, payload) {
+      commit('setMakeupSimulatedImage', await getEyelinerSimulator(payload));
+    },
+    async loadConcealerSimulated({ commit }, payload) {
+      commit('setMakeupSimulatedImage', await getConcealerSimulator(payload));
     },
   },
 };

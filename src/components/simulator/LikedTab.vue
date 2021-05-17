@@ -6,6 +6,8 @@
       <Carousel v-show="blushState" :blushState="blushState" :list="user.likedBlush"></Carousel>
       <Carousel v-show="lipsState" :lipState="lipsState" :list="user.likedLip"></Carousel>
       <Carousel v-show="eyeshadowState" :eyeshadowState="eyeshadowState" :list="user.likedEyeshadow"></Carousel>
+      <Carousel v-show="eyelinerState" :eyelinerState="eyelinerState" :list="user.likedEyeshadow"></Carousel>
+      <Carousel v-show="concealerState" :concealerState="concealerState" :list="user.likedEyeshadow"></Carousel>
     </div>
     <!-- <div class="lip-container">
       <div class="title-liked">Blush</div>
@@ -26,7 +28,9 @@ export default {
     skinState: Boolean,
     blushState: Boolean,
     lipsState: Boolean,
-    eyeshadowState:Boolean
+    eyeshadowState:Boolean,
+    eyelinerState:Boolean,
+    concealerState:Boolean
   },
   computed: {
     ...mapGetters({ user: 'getUserInfo' }),

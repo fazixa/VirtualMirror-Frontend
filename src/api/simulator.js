@@ -37,9 +37,25 @@ async function getFoundationSimulator(form) {
   return response.data;
 }
 
+async function getConcealerSimulator(form) {        
+
+  const response = await axios.post('makeup/image/concealer', createFormData(form));
+  return response.data;
+}
+
+async function getEyelinerSimulator(form) {        
+
+  const response = await axios.post('makeup/image/eyeliner', createFormData(form));
+  return response.data;
+}
+
+
 export {
   getLipSimulator,
   getEyeshadowSimulator,
   getBlushSimulator,
-  getFoundationSimulator
+  getFoundationSimulator,
+  getConcealerSimulator,
+  getEyelinerSimulator
+
 };

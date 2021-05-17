@@ -72,6 +72,26 @@
         </div>
       </div>
 
+      <div class="selected-makeup" v-show="videoEyelinerIcon">
+        <div class="circle-img">
+          <div class="cancel-lip-simulated">
+            <a @click="handleCancelVideo('eyeliner')" class="cancel-icon"><i class="fas fa-times"></i></a>
+          </div>
+          <img v-if="videoEyelinerIcon" class="selected-simu-img fadeIn" :src="eyelinerSourceIcon" />
+
+        </div>
+      </div>
+
+      <div class="selected-makeup" v-show="videoConcealerIcon">
+        <div class="circle-img">
+          <div class="cancel-lip-simulated">
+            <a @click="handleCancelVideo('concealer')" class="cancel-icon"><i class="fas fa-times"></i></a>
+          </div>
+          <img v-if="videoConcealerIcon" class="selected-simu-img fadeIn" :src="concealerSourceIcon" />
+
+        </div>
+      </div>
+
 
 
       <div class="selected-makeup" v-show="!videoFeed">
@@ -154,6 +174,12 @@
         videoLipstickIcon: false,
         lipstickSourceIcon: "",
 
+        videoEyelinerIcon: false,
+        eyelinerSourceIcon: "",
+
+        videoConcealerIcon: false,
+        concealerSourceIcon: "",
+
         vedioFeedSource: ""
 
       };
@@ -196,9 +222,17 @@
         this.videoFoundationIcon = false;
         this.foundationSourceIcon = ""
 
-        this.videoLpistickOff();
+        this.videoLipstickOff();
         this.videoLipstickIcon = false;
         this.lipstickSourceIcon = ""
+
+        this.videoEyelinerOff();
+        this.videoEyelinerIcon = false;
+        this.eyelinerSourceIcon = ""
+
+        this.videoConcealerOff();
+        this.videoConcealerIcon = false;
+        this.concealerSourceIcon = ""
 
 
         console.log(this.videoFeed)
@@ -260,8 +294,8 @@
       async videoBlushOff() {
         console.log("videBlushOff")
         await axios.get("video_off/blush");
-        this.eyeshadowSourceIcon = ""
-        this.videoEyeshadowIcon = false
+        this.blushSourceIcon = ""
+        this.videoBlushIcon = false
       },
 
       async videoFoundation(form) {
@@ -294,6 +328,41 @@
         this.lipstickSourceIcon = ""
         this.videoLipstickIcon = false
       },
+
+
+
+      async videoEyeliner(form) {
+        console.log("videeyeliner")
+        await axios.post("video/eyeliner", this.createFormData(form));
+        this.eyelinerSourceIcon = this.getIconImage()
+        this.videoEyelinerIcon = true
+      },
+
+
+      async videoEyelinerOff() {
+        console.log("videeyelinerOff")
+        await axios.get("video_off/eyeliner");
+        this.eyelinerSourceIcon = ""
+        this.videoEyelinerIcon = false
+      },
+
+
+      async videoConcealer(form) {
+        console.log("videconcealer")
+        await axios.post("video/concealer", this.createFormData(form));
+        this.concealerSourceIcon = this.getIconImage()
+        this.videoConcealerIcon = true
+      },
+
+
+      async videoConcealerOff() {
+        console.log("videeconcealerOff")
+        await axios.get("video_off/concealer");
+        this.concealerSourceIcon = ""
+        this.videoConcealerIcon = false
+      },
+
+
 
 
 
@@ -336,6 +405,18 @@
           this.videoLipstickOff();
           this.videoLipstickIcon = false;
           this.lipstickSourceIcon = ""
+        }
+
+        if (makeupType == 'eyeliner') {
+          this.videoEyelinerOff();
+          this.videoEyelinerIcon = false;
+          this.eyelinerSourceIcon = ""
+        }
+
+        if (makeupType == 'concealer') {
+          this.videoConcealerOff();
+          this.videoConcealerIcon = false;
+          this.concealerSourceIcon = ""
         }
       },
       readFileImg(imgRes) {
@@ -405,6 +486,10 @@
                 await this.$store.dispatch('loadFoundationSimulated', form);
               } else if (this.getMakeupState === 'Lipstick') {
                 await this.$store.dispatch('loadLipSimulated', form);
+              }else if (this.getMakeupState === 'Eyeliner') {
+                await this.$store.dispatch('loadEyelinerSimulated', form);
+              }else if (this.getMakeupState === 'Concealer') {
+                await this.$store.dispatch('loadConcealerSimulated', form);
               }
               
 
@@ -414,6 +499,8 @@
             }
             // ---------- handle vide feed ----------
             if (this.videoFeed) {
+              console.log("state:  ")
+              console.log(this.getMakeupState)
               if (this.getMakeupState === 'Eyeshadow') {
 
                 await this.videoEyeshadow(form)
@@ -428,6 +515,15 @@
 
               if (this.getMakeupState === 'Lip') {
                 await this.videoLipstick(form)
+              }
+
+              if (this.getMakeupState === 'Eyeliner') {
+                await this.videoEyeliner(form)
+              }
+
+
+              if (this.getMakeupState === 'Concealer') {
+                await this.videoConcealer(form)
               }
 
 
