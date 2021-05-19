@@ -3,7 +3,7 @@
     <div class="nav-container d-flex justify-content-between">
       <router-link to="/" class="home-btn">
         <span>
-          tints.
+          Virtual Mirror
         </span>
       </router-link>
       <button class="user-btn" type="button">

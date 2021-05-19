@@ -32,7 +32,7 @@
           ></i>
         </div>
         <div v-if="item.price > 0" class="price">
-          ฿{{ item ? converterUSDToTHB(item.price) : converterUSDToTHB('17.5') }}
+          ${{ item ? (item.price) : '17.5' }}
         </div>
       </div>
     </div>

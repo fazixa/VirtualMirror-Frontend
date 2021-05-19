@@ -1,4 +1,4 @@
-# tints
+# virtual Mirror
 
 ## Project setup
 ```

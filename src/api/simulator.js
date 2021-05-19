@@ -11,10 +11,23 @@ function createFormData(form) {
   return bodyFormData
 }
 
+function createFormDataLip(form) {
+  var bodyFormData = new FormData();
+  bodyFormData.append('user_image', form.fileUpload);
+  bodyFormData.append('user_id', form.userID);
+  bodyFormData.append('r_value', form.r_value);
+  bodyFormData.append('g_value', form.g_value);
+  bodyFormData.append('b_value', form.b_value);
+  bodyFormData.append('l_type', form.l_type);
+  bodyFormData.append('gloss', form.gloss);
+  console.log(bodyFormData)
+  return bodyFormData
+}
+
 async function getLipSimulator(form) {        
 
   // const response = await axios.post('simulator/lip', bodyFormData, { responseType: "blob" });
-  const response = await axios.post('makeup/image/lipstick', createFormData(form));
+  const response = await axios.post('makeup/image/lipstick', createFormDataLip(form));
   return response.data;
 }
 

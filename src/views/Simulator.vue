@@ -31,7 +31,7 @@
         <Loading :loadingState="loadingState"></Loading>
       </div>
 
-
+    <div class="all-container">
       <div class="selected-makeup" v-show="videoEyeshadowIcon">
         <div class="circle-img">
           <div class="cancel-lip-simulated">
@@ -40,7 +40,7 @@
           <img v-if="videoEyeshadowIcon" class="selected-simu-img fadeIn" :src="eyeshadowSourceIcon" />
 
         </div>
-      </div>
+      </div >
 
       <div class="selected-makeup" v-show="videoBlushIcon">
         <div class="circle-img">
@@ -92,7 +92,7 @@
         </div>
       </div>
 
-
+</div>
 
       <div class="selected-makeup" v-show="!videoFeed">
         <div class="circle-img">
@@ -251,15 +251,28 @@
 
 
       createFormData(form) {
-        var bodyFormData = new FormData();
+        console.log("colorsssssssssss")
         console.log(form.r_value)
-        // bodyFormData.append('user_image', form.fileUpload);
-        bodyFormData.append('user_id', form.userID);
-        bodyFormData.append('r_value', form.r_value);
-        bodyFormData.append('g_value', form.g_value);
-        bodyFormData.append('b_value', form.b_value);
-        console.log(bodyFormData)
-        return bodyFormData
+        var data ={
+          'user_id' :form.userID,
+          'r_value': form.r_value,
+          'g_value': form.g_value,
+          'b_value': form.b_value
+        }
+        return data
+      },
+      createFormDataLip(form) {
+        console.log("colorsssssssssss")
+        console.log(form.r_value)
+        var data ={
+          'user_id' :form.userID,
+          'r_value': form.r_value,
+          'g_value': form.g_value,
+          'b_value': form.b_value,
+          'l_type': form.l_type,
+          'gloss': form.gloss
+        }
+        return data
       },
       getIconImage() {
         var iconSource
@@ -316,7 +329,7 @@
 
       async videoLipstick(form) {
         console.log("videLip")
-        await axios.post("video/lipstick", this.createFormData(form));
+        await axios.post("video/lipstick", this.createFormDataLip(form));
         this.lipstickSourceIcon = this.getIconImage()
         this.videoLipstickIcon = true
       },
@@ -466,6 +479,17 @@
               g_value: this.spilitRgbColor(val.rgb_value)[1],
               b_value: this.spilitRgbColor(val.rgb_value)[2],
             };
+
+            if (this.getMakeupState === 'Lip'){
+              
+              let form2 = {
+                gloss: val.gloss,
+                l_type: val.l_type
+              }
+              console.log("///////////////////////////////")
+              console.log(form)
+              form = Object.assign(form2, form)
+              }
             console.log(val.rgb_value);
             console.log(this.videoFeed);
 
@@ -476,15 +500,19 @@
                 let src = document.getElementById('userImage').src;
                 form.fileUpload = await this.imageSrcToFile(src);
               }
+              console.log("??????????????????")
               console.log(this.getMakeupState);
 
               if (this.getMakeupState === 'Eyeshadow') {
                 await this.$store.dispatch('loadEyeshadowSimulated', form);
               } else if (this.getMakeupState === 'Blush') {
+                console.log("sim bl")
                 await this.$store.dispatch('loadBlushSimulated', form);
               } else if (this.getMakeupState === 'Foundation') {
+                console.log("sim fon")
                 await this.$store.dispatch('loadFoundationSimulated', form);
-              } else if (this.getMakeupState === 'Lipstick') {
+              } else if (this.getMakeupState === 'Lip') {
+                console.log("sim lip")
                 await this.$store.dispatch('loadLipSimulated', form);
               }else if (this.getMakeupState === 'Eyeliner') {
                 await this.$store.dispatch('loadEyelinerSimulated', form);
@@ -550,7 +578,11 @@
   .simulator-img {
     margin-bottom: 1rem;
   }
-
+  .all-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
   .selected-makeup {
     display: flex;
     justify-content: center;
