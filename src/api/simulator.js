@@ -62,6 +62,12 @@ async function getEyelinerSimulator(form) {
   return response.data;
 }
 
+async function getLensSimulator(form) {        
+
+  const response = await axios.post('makeup/image/lens', createFormData(form));
+  return response.data;
+}
+
 
 export {
   getLipSimulator,
@@ -69,6 +75,7 @@ export {
   getBlushSimulator,
   getFoundationSimulator,
   getConcealerSimulator,
-  getEyelinerSimulator
+  getEyelinerSimulator,
+  getLensSimulator
 
 };

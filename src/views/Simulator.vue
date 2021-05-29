@@ -91,6 +91,15 @@
 
         </div>
       </div>
+      <div class="selected-makeup" v-show="videoLensIcon">
+        <div class="circle-img">
+          <div class="cancel-lip-simulated">
+            <a @click="handleCancelVideo('lens')" class="cancel-icon"><i class="fas fa-times"></i></a>
+          </div>
+          <img v-if="videoLensIcon" class="selected-simu-img fadeIn" :src="LensSourceIcon" />
+
+        </div>
+      </div>
 
 </div>
 
@@ -180,6 +189,9 @@
         videoConcealerIcon: false,
         concealerSourceIcon: "",
 
+        videoLensIcon: false,
+        lensSourceIcon: "",
+
         vedioFeedSource: ""
 
       };
@@ -233,6 +245,10 @@
         this.videoConcealerOff();
         this.videoConcealerIcon = false;
         this.concealerSourceIcon = ""
+
+        this.videoLensOff();
+        this.videoLensIcon = false;
+        this.lensSourceIcon = ""
 
 
         console.log(this.videoFeed)
@@ -376,6 +392,23 @@
       },
 
 
+      async videoLens(form) {
+        console.log("videlens")
+        await axios.post("video/lens", this.createFormData(form));
+        this.lensSourceIcon = this.getIconImage()
+        this.videoLensIcon = true
+      },
+
+
+      async videoLensOff() {
+        console.log("videelensOff")
+        await axios.get("video_off/lens");
+        this.lensSourceIcon = ""
+        this.videoLensIcon = false
+      },
+
+
+
 
 
 
@@ -430,6 +463,12 @@
           this.videoConcealerOff();
           this.videoConcealerIcon = false;
           this.concealerSourceIcon = ""
+        }
+
+        if (makeupType == 'lens') {
+          this.videoLensOff();
+          this.videoLensIcon = false;
+          this.lensSourceIcon = ""
         }
       },
       readFileImg(imgRes) {
@@ -518,6 +557,8 @@
                 await this.$store.dispatch('loadEyelinerSimulated', form);
               }else if (this.getMakeupState === 'Concealer') {
                 await this.$store.dispatch('loadConcealerSimulated', form);
+              }else if (this.getMakeupState === 'Lens') {
+                await this.$store.dispatch('loadLensSimulated', form);
               }
               
 
@@ -552,6 +593,10 @@
 
               if (this.getMakeupState === 'Concealer') {
                 await this.videoConcealer(form)
+              }
+
+              if (this.getMakeupState === 'Lens') {
+                await this.videoLens(form)
               }
 
 

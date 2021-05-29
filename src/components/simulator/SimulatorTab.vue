@@ -46,6 +46,12 @@
           >Concealer <img class="icon-tab" src="@/assets/images/lipstick.png"
         /></a>
       </li>
+
+        <li class="nav-item" role="presentation">
+        <a class="nav-link lips-link" :class="{ active: lensActive }" @click="handleLensActive"
+          >Lens <img class="icon-tab" src="@/assets/images/lipstick.png"
+        /></a>
+      </li>
     </ul>
     <div class="tab-content">
       <!-- <div class="tab-pane lips-pane" :class="[simulatorActive ? 'active' : 'd-none']"></div> -->
@@ -67,6 +73,10 @@
         <div class="tab-pane" :class="[concealerActive ? 'active' : 'd-none']">
         <LikedTab :concealerState="true">Concealer</LikedTab>
       </div>
+
+      <div class="tab-pane" :class="[lensActive ? 'active' : 'd-none']">
+        <LikedTab :lensState="true">Lens</LikedTab>
+      </div>
     </div>
   </div>
 </template>
@@ -87,7 +97,8 @@ export default {
       lipsActive: false,
       eyeshadowActive: false,
       eyelinerActive: false,
-      concealerActive: false
+      concealerActive: false, 
+      lensActive:false
     };
   },
   methods: {
@@ -106,6 +117,7 @@ export default {
       this.eyeshadowActive = false;
       this.eyelinerActive = false;
       this.concealerActive = false;
+      this.lensActive =false;
     },
     handleSkinActive() {
       this.lipsActive = false;
@@ -114,6 +126,8 @@ export default {
       this.eyeshadowActive = false;
       this.eyelinerActive = false;
       this.concealerActive = false;
+      this.lensActive =false;
+      
     },
     handleLipsActive() {
       this.lipsActive = true;
@@ -122,6 +136,7 @@ export default {
       this.eyeshadowActive = false;
       this.eyelinerActive = false;
       this.concealerActive = false;
+      this.lensActive =false;
     },
     handleEyeshadowActive() {
       this.lipsActive = false;
@@ -130,6 +145,7 @@ export default {
       this.eyeshadowActive = true;
       this.eyelinerActive = false;
       this.concealerActive = false;
+      this.lensActive =false;
     },
     handleEyelinerActive() {
       this.lipsActive = false;
@@ -138,6 +154,7 @@ export default {
       this.eyeshadowActive = false;
       this.eyelinerActive = true;
       this.concealerActive = false;
+      this.lensActive =false;
     },
     handleConcealerActive() {
       this.lipsActive = false;
@@ -146,6 +163,17 @@ export default {
       this.eyeshadowActive = false;
       this.eyelinerActive = false;
       this.concealerActive = true;
+      this.lensActive =false;
+    },
+
+    handleLensActive() {
+      this.lipsActive = false;
+      this.cheekActive = false;
+      this.skinActive = false;
+      this.eyeshadowActive = false;
+      this.eyelinerActive = false;
+      this.concealerActive = false;
+      this.lensActive =true;
     },
   },
 };
