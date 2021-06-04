@@ -6,7 +6,8 @@ import {
   getBlushSimulator,
   getFoundationSimulator,
   getEyelinerSimulator,
-  getConcealerSimulator
+  getConcealerSimulator,
+  getLensSimulator
 
 } from '@/api/simulator';
 
@@ -73,6 +74,9 @@ export default{
     },
     async loadConcealerSimulated({ commit }, payload) {
       commit('setMakeupSimulatedImage', await getConcealerSimulator(payload));
+    },
+    async loadLensSimulated({ commit }, payload) {
+      commit('setMakeupSimulatedImage', await getLensSimulator(payload));
     },
   },
 };
