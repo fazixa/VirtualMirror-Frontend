@@ -1,7 +1,10 @@
 <template>
   <div>
-    <Banner bannerImg="simulator_banner.png"></Banner>
+    <!-- <Banner bannerImg="simulator_banner.png"></Banner> -->
     <UploadImageModal class="change-img-btn" titleButton="Change Image"></UploadImageModal>
+    <div class = "change-cam">
+    <button class="change-cam-btn" v-show="!videoFeed" @click="openCam">open camera</button>
+    <button class="change-cam-btn" v-show="videoFeed" @click="closeCam">close camera</button></div>
     <div class="img-profile-btn">
 
     </div>
@@ -136,8 +139,7 @@
         </div>
       </div>
 
-      <button v-show="!videoFeed" @click="openCam">open cam</button>
-      <button v-show="videoFeed" @click="closeCam">close cam</button>
+
 
       <SimulatorTab></SimulatorTab>
     </div>
@@ -145,7 +147,7 @@
 </template>
 
 <script>
-  import Banner from '@/components/main/Banner.vue';
+  // import Banner from '@/components/main/Banner.vue';
   import UploadImageModal from '@/components/main/UploadImageModal.vue';
   import SimulatorTab from '@/components/simulator/SimulatorTab.vue';
   import Loading from '@/components/main/Loading.vue';
@@ -156,7 +158,7 @@
 
   export default {
     components: {
-      Banner,
+      // Banner,
       UploadImageModal,
       SimulatorTab,
       Loading,
@@ -664,10 +666,27 @@
   }
 
   .change-img-btn {
+    position: absolute;
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
   }
+  .change-cam {
+    padding-top:  60px;
+    position: absolute;
+    display: flex;
+    // justify-content: flex-end;
+    margin-top: 1rem;
+  }
+
+  .change-cam-btn {
+  background: #ffffff;
+  border: 3px solid #d1d1d1;
+  border-radius:  0 30px 30px 0px;
+  width: 180px;
+  padding: 0.5rem 1rem;
+  color: #737373;
+}
 
   .user-img-link {
     cursor: pointer;

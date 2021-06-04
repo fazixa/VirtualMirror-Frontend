@@ -2,16 +2,19 @@
   <div id="app">
     <Navbar></Navbar>
     <router-view />
+    <Footer></Footer>
    
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/main/Navbar.vue';
+import Footer from './components/main/Footer.vue';
 
 export default {
   components: {
     Navbar,
+    Footer
  
   },
 };
@@ -23,7 +26,7 @@ export default {
 
 html,
 body {
-  background-color: #fffcf7 !important;
+  background-color: #ffffff !important;
   // background-image: url('../src/assets/images/blush-bg.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;

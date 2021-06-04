@@ -17,40 +17,40 @@
       </li> -->
       <li class="nav-item" role="presentation">
         <a class="nav-link" :class="{ active: skinActive }" @click="handleSkinActive"
-          >Skin <img class="icon-tab" src="@/assets/images/foundation.png"
-        /></a>
+          >Skin 
+        </a>
       </li>
 
       <li class="nav-item" role="presentation">
         <a class="nav-link" :class="{ active: cheekActive }" @click="handleCheeckActive"
-          >Cheeck <img class="icon-tab" src="@/assets/images/blush.png"
-        /></a>
+          >Cheeck 
+        </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: lipsActive }" @click="handleLipsActive"
-          >Lips <img class="icon-tab" src="@/assets/images/lipstick.png"
-        /></a>
+          >Lips 
+        </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: eyeshadowActive }" @click="handleEyeshadowActive"
-          >Eyeshadow <img class="icon-tab" src="@/assets/images/lipstick.png"
-        /></a>
+          >Eyeshadow 
+        </a>
       </li>
         <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: eyelinerActive }" @click="handleEyelinerActive"
-          >Eyeliner <img class="icon-tab" src="@/assets/images/lipstick.png"
-        /></a>
+          >Eyeliner 
+        </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: concealerActive }" @click="handleConcealerActive"
-          >Concealer <img class="icon-tab" src="@/assets/images/lipstick.png"
-        /></a>
+          >Concealer 
+        </a>
       </li>
 
         <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: lensActive }" @click="handleLensActive"
-          >Lens <img class="icon-tab" src="@/assets/images/lipstick.png"
-        /></a>
+          >Lens 
+        </a>
       </li>
     </ul>
     <div class="tab-content">
@@ -187,7 +187,7 @@ a.nav-link {
 }
 
 .tab-pane {
-  background: #ffffff;
+  background: #fafafa;
   border: 1px solid transparent;
   border-color: #ffffff #dee2e6 #dee2e6 #dee2e6;
   padding: 2rem 1rem;

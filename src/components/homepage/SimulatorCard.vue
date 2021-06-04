@@ -2,7 +2,9 @@
   <div class="simulation-container">
     <div class="simulator-card">
       <div class="content-container">
+        
         <div class="content-detail">
+          <div class= "title"> Virtual Try on</div>
           <router-link class="simulator-btn" to="/simulator">Simulation</router-link>
         </div>
       </div>
@@ -60,21 +62,24 @@ export default {
   overflow: hidden;
   // width: 60%;
 }
-
+.title {
+  padding :40px;
+  font-size: 40px;
+}
 .model-container {
   width: 40%;
 }
 
 .simulator-btn {
   border: none;
-  background: #ac6f63;
+  background: #b4b4b4;
   color: #ffffff;
   padding: 0.5rem;
   transition: all 0.2s;
   text-decoration: none;
 
   &:hover {
-    background: #714941;
+    background: #9e9e9e;
   }
 }
 
@@ -84,7 +89,7 @@ export default {
 }
 
 .content-container {
-  background-image: url('../../assets/images/card/simulator-card.png');
+  // background-image: url('../../assets/images/card/simulator-card.png');
   background-position: center;
   background-size: cover;
   height: calc(90vmin * 9 / 16);
@@ -95,7 +100,7 @@ export default {
 }
 
 .content-detail {
-  margin-top: 5rem;
+  margin-top: 1rem;
 }
 
 .fadeIn {
@@ -147,7 +152,7 @@ export default {
   z-index: 2;
   width: 10vmin;
   left: 100%;
-  background: rgba(172, 111, 99, 0.66);
+  background: rgba(144, 144, 144, 0.66);
   animation-delay: 0.1s;
 
   --x1: 0;

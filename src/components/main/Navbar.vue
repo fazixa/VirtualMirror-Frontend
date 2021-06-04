@@ -29,13 +29,13 @@ export default {
   height: 5rem;
   align-items: center;
   padding: 0rem 2rem;
-  background-color: #fffcf7;
+  background-color: #ffffff;
 }
 
 .home-btn {
   font-family: 'Yeseva One', cursive;
   padding: 0.5rem;
-  color: #edb194;
+  color: #b6b6b6;
   letter-spacing: 3px;
   font-size: 2rem;
 }

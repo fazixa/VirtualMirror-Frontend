@@ -8,11 +8,11 @@
     >
       <div class="label-detail">
         {{ titleButton }}
-        <div class="upload-icon"><i class="fas fa-image"></i></div>
+        
       </div>
     </button>
     <button type="button" v-else class="change-img-link" data-toggle="modal" data-target="#myModal">
-      {{ titleButton }} <i class="far fa-file-image"></i>
+      {{ titleButton }} 
     </button>
     <input
       class="d-none"
@@ -352,10 +352,10 @@ button {
 
 .change-img-link {
   background: #ffffff;
-  border: 3px solid #ac6f63;
-  border-right: none;
+  border: 3px solid #d1d1d1;
+  border-radius:  0 30px 30px 0px;
+  width: 180px;
   padding: 0.5rem 1rem;
-  border-radius: 3rem 0 0 3rem;
   color: #737373;
 }
 
