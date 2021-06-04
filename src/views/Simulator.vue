@@ -96,7 +96,7 @@
           <div class="cancel-lip-simulated">
             <a @click="handleCancelVideo('lens')" class="cancel-icon"><i class="fas fa-times"></i></a>
           </div>
-          <img v-if="videoLensIcon" class="selected-simu-img fadeIn" :src="LensSourceIcon" />
+          <img v-if="videoLensIcon" class="selected-simu-img fadeIn" :src="lensSourceIcon" />
 
         </div>
       </div>
@@ -514,9 +514,9 @@
             this.loadingState = true;
             let form = {
               userID: 123,
-              r_value: this.spilitRgbColor(val.rgb_value)[0],
-              g_value: this.spilitRgbColor(val.rgb_value)[1],
-              b_value: this.spilitRgbColor(val.rgb_value)[2],
+              r_value: parseInt(this.spilitRgbColor(val.rgb_value)[0]),
+              g_value: parseInt(this.spilitRgbColor(val.rgb_value)[1]),
+              b_value: parseInt(this.spilitRgbColor(val.rgb_value)[2]),
             };
 
             if (this.getMakeupState === 'Lip'){

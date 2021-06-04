@@ -65,6 +65,7 @@ export default {
     eyelinerState: Boolean,
     concealerState:Boolean,
     cheeckState: Boolean,
+    lensState: Boolean
   },
   computed: {
     ...mapGetters(['getUserInfo', 'getMakeupSimulator']),
@@ -100,6 +101,11 @@ export default {
       }
       if (this.concealerState) {
         this.$store.dispatch('updateMakeupState', 'Concealer');
+      }
+
+      if (this.lensState) {
+        console.log("lensssssssssssssssssssssssssss")
+        this.$store.dispatch('updateMakeupState', 'Lens');
       }
       this.$store.dispatch('updateMakeupSimulator', item);
     },

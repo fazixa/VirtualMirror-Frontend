@@ -6,9 +6,9 @@
           Virtual Mirror
         </span>
       </router-link>
-      <button class="user-btn" type="button">
+      <!-- <button class="user-btn" type="button">
         <img class="user-img" :src="getUserInfo.userImgURL" alt="User" />
-      </button>
+      </button> -->
     </div>
     <!-- <img class="nav-bg" src="@/assets/images/nav_img.png" /> -->
   </div>
