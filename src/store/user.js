@@ -482,6 +482,41 @@ export default {
             '',
         },
 
+
+        
+      ],
+
+      likedLens: [
+        {
+          _id: "6000105304026944b4ad1754",
+          brand: "Beauty Creation",
+          serie: "LIQUID EYELINER",
+          price: "32.5",
+          image_link: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Ski_trail_rating_symbol-green_circle.svg/600px-Ski_trail_rating_symbol-green_circle.svg.png",
+          product_link: "https://www.beautycreationscosmetics.com/products/dare-to-be-bright-eyeliner-serenity",
+          category: null,
+          color_name: "Green",
+          rgb_value: '(17, 173, 75)',
+          deltaE: 2.462,
+          api_image_link: ""
+        },
+        {
+          _id: '6000105304026944b4ad1741',
+          brand: 'IPSY',
+          serie: 'High Line Liquid Eyeliner in Runway',
+          price: '22.0',
+          image_link:
+            'https://images-na.ssl-images-amazon.com/images/I/31%2BdfjVAunL._AC_.jpg',
+          product_link:
+            'https://www.ipsy.com/product/p-jyyx1tpm5sqskr7',
+          category: null,
+          color_name: 'Blue',
+          rgb_value: '(29, 122, 194)',
+          deltaE: 6.239,
+          api_image_link:
+            '',
+        },
+
         {
           _id: '6000105304026944b4ad1741',
           brand: 'Romantic',

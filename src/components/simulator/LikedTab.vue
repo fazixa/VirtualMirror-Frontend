@@ -8,7 +8,7 @@
       <Carousel v-show="eyeshadowState" :eyeshadowState="eyeshadowState" :list="user.likedEyeshadow"></Carousel>
       <Carousel v-show="eyelinerState" :eyelinerState="eyelinerState" :list="user.likedEyeliner"></Carousel>
       <Carousel v-show="concealerState" :concealerState="concealerState" :list="user.likedConcealer"></Carousel>
-      <Carousel v-show="lensState" :lensState="lensState" :list="user.likedEyeliner"></Carousel>
+      <Carousel v-show="lensState" :lensState="lensState" :list="user.likedLens"></Carousel>
     </div>
     <!-- <div class="lip-container">
       <div class="title-liked">Blush</div>

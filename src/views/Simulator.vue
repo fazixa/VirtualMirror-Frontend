@@ -1,8 +1,10 @@
 <template>
   <div>
     <!-- <Banner bannerImg="simulator_banner.png"></Banner> -->
-    <UploadImageModal class="change-img-btn" titleButton="Change Image"></UploadImageModal>
     <div class = "change-cam">
+      <UploadImageModal class="change-img-btn" titleButton="Change Image"></UploadImageModal>
+
+    <!-- <div class = "change-cam"> -->
     <button class="change-cam-btn" v-show="!videoFeed" @click="openCam">open camera</button>
     <button class="change-cam-btn" v-show="videoFeed" @click="closeCam">close camera</button></div>
     <div class="img-profile-btn">
@@ -666,20 +668,22 @@
   }
 
   .change-img-btn {
-    position: absolute;
+    // position: absolute;
     display: flex;
     justify-content: flex-end;
     margin-top: 1rem;
   }
   .change-cam {
-    padding-top:  60px;
+    padding-top:  30px;
     position: absolute;
     display: flex;
+    flex-direction: column;
     // justify-content: flex-end;
     margin-top: 1rem;
   }
 
   .change-cam-btn {
+     margin-top:  10px;
   background: #ffffff;
   border: 3px solid #d1d1d1;
   border-radius:  0 30px 30px 0px;
@@ -701,7 +705,7 @@
   }
 
   .user-img {
-    height: 25rem;
+    height: 35rem;
     max-width: 100%;
   }
 
