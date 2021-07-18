@@ -17,65 +17,65 @@
       </li> -->
       <li class="nav-item" role="presentation">
         <a class="nav-link" :class="{ active: skinActive }" @click="handleSkinActive"
-          >Skin 
+          ><img class="icon-tab" src="@/assets/images/cream.png"/>
         </a>
       </li>
 
       <li class="nav-item" role="presentation">
         <a class="nav-link" :class="{ active: cheekActive }" @click="handleCheeckActive"
-          >Cheeck 
+          ><img class="icon-tab" src="@/assets/images/brush.png"/>
         </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: lipsActive }" @click="handleLipsActive"
-          >Lips 
+          ><img class="icon-tab" src="@/assets/images/lips.png"/>
         </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: eyeshadowActive }" @click="handleEyeshadowActive"
-          >Eyeshadow 
+          ><img class="icon-tab" src="@/assets/images/eye-shadow.png"/>
         </a>
       </li>
         <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: eyelinerActive }" @click="handleEyelinerActive"
-          >Eyeliner 
+          ><img class="icon-tab" src="@/assets/images/eyeliner.png"/>
         </a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: concealerActive }" @click="handleConcealerActive"
-          >Concealer 
+          ><img class="icon-tab" src="@/assets/images/powder.png"/>
         </a>
       </li>
 
         <li class="nav-item" role="presentation">
         <a class="nav-link lips-link" :class="{ active: lensActive }" @click="handleLensActive"
-          >Lens 
+          ><img class="icon-tab" src="@/assets/images/makeup.png"/>
         </a>
       </li>
     </ul>
     <div class="tab-content">
       <!-- <div class="tab-pane lips-pane" :class="[simulatorActive ? 'active' : 'd-none']"></div> -->
       <div class="tab-pane" :class="[skinActive ? 'active' : 'd-none']">
-        <LikedTab :skinState="true">Foundation</LikedTab>
+        <LikedTab :skinState="true" ><div class="title">کرم پودر</div></LikedTab>
       </div>
       <div class="tab-pane" :class="[cheekActive ? 'active' : 'd-none']">
-        <LikedTab :blushState="true">Blush</LikedTab>
+        <LikedTab :blushState="true" ><div class="title">رژ گونه</div></LikedTab>
       </div>
       <div class="tab-pane" :class="[lipsActive ? 'active' : 'd-none']">
-        <LikedTab :lipsState="true">Lipstick</LikedTab>
+        <LikedTab :lipsState="true"><div class="title">رژلب</div></LikedTab>
       </div>
         <div class="tab-pane" :class="[eyeshadowActive ? 'active' : 'd-none']">
-        <LikedTab :eyeshadowState="true">Eyeshadow</LikedTab>
+        <LikedTab :eyeshadowState="true"><div class="title">سایه چشم</div></LikedTab>
       </div>
         <div class="tab-pane" :class="[eyelinerActive ? 'active' : 'd-none']">
-        <LikedTab :eyelinerState="true">Eyeliner</LikedTab>
+        <LikedTab :eyelinerState="true"><div class="title">خط چشم</div></LikedTab>
       </div>
         <div class="tab-pane" :class="[concealerActive ? 'active' : 'd-none']">
-        <LikedTab :concealerState="true">Concealer</LikedTab>
+        <LikedTab :concealerState="true"><div class="title">کانسیلر</div></LikedTab>
       </div>
 
       <div class="tab-pane" :class="[lensActive ? 'active' : 'd-none']">
-        <LikedTab :lensState="true">Lens</LikedTab>
+        <LikedTab :lensState="true"><div class="title">لنز</div></LikedTab>
       </div>
     </div>
   </div>
@@ -185,15 +185,20 @@ a.nav-link {
   color: #222;
   font-size: 1.1rem;
 }
+.title{
+  color: white;
+
+}
 
 .tab-pane {
-  background: #fafafa;
-  border: 1px solid transparent;
+  height: 84.9vh;
+  background: #c98fa2;
+  /* border: 1px solid transparent; */
   border-color: #ffffff #dee2e6 #dee2e6 #dee2e6;
   padding: 2rem 1rem;
 }
 
 .icon-tab {
-  width: 1rem;
+  width: 2rem;
 }
 </style>

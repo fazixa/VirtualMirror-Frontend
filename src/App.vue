@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
+   
     <router-view />
     <Footer></Footer>
    
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Navbar from '@/components/main/Navbar.vue';
+
 import Footer from './components/main/Footer.vue';
 
 export default {
   components: {
-    Navbar,
+    
     Footer
  
   },
@@ -24,6 +24,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+
+@font-face {
+  font-family: IranSans;
+  src: url('../src/assets/IRANSansXFaNum-Bold.ttf') format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: IranSans;
+}
 html,
 body {
   background-color: #ffffff !important;
@@ -34,6 +45,9 @@ body {
   background-size: cover;
   background-attachment: fixed;
   height: 100%;
+  margin:0px;
+  padding:0px;
+  font-family: IranSans;
 }
 
 #app {
@@ -44,6 +58,8 @@ body {
   text-align: center;
   color: #2c3e50;
   min-height: 100%;
+    margin: 0;
+  padding: 0;
 }
 
 button {

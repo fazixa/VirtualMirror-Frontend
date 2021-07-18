@@ -1,149 +1,169 @@
 <template>
   <div>
     <!-- <Banner bannerImg="simulator_banner.png"></Banner> -->
-    <div class = "change-cam">
-      <UploadImageModal class="change-img-btn" titleButton="Change Image"></UploadImageModal>
-
-    <!-- <div class = "change-cam"> -->
-    <button class="change-cam-btn" v-show="!videoFeed" @click="openCam">open camera</button>
-    <button class="change-cam-btn" v-show="videoFeed" @click="closeCam">close camera</button></div>
-    <div class="img-profile-btn">
-
-    </div>
-    <div class="simulator-container">
-      <div class="simulator-img">
-        <div class="img-container">
 
 
-          <div v-show="!videoFeed">
-            <div v-show="!simulatedState">
-              <img v-show="imgInput" class="user-img fadeIn" :class="{ filterImg: loadingState }" :src="imgInput"
-                alt="InputImg" />
-              <img v-show="!imgInput" class="user-img fadeIn" id="userImage" :class="{ filterImg: loadingState }"
-                :src="getUserInfo.userImgURL" alt="InputImg" />
+
+    <div class="simulator-container justify-content-center container">
+      <div class="row justify-content-center">
+
+        <div class="col-8">
+
+          <div class="img-container">
+
+
+            <div v-show="!videoFeed">
+              <div v-show="!simulatedState">
+                <img v-show="imgInput" class="user-img fadeIn" :class="{ filterImg: loadingState }" :src="imgInput"
+                  alt="InputImg" />
+                <img v-show="!imgInput" class="user-img fadeIn" id="userImage" :class="{ filterImg: loadingState }"
+                  :src="getUserInfo.userImgURL" alt="InputImg" />
+              </div>
+              <div v-show="simulatedState">
+                <img :class="{ filterImg: loadingState }" class="user-img" v-if="imageSimulated"
+                  :src="imageSimulated" />
+              </div>
             </div>
-            <div v-show="simulatedState">
-              <img :class="{ filterImg: loadingState }" class="user-img" v-if="imageSimulated" :src="imageSimulated" />
+
+            <div v-show="videoFeed">
+              <img :class="{ filterImg: loadingState }" class="user-img" v-if="videoFeed" :src="vedioFeedSource" />
+            </div>
+
+
+          </div>
+          <Loading :loadingState="loadingState"></Loading>
+
+
+          <!-- <div class="all-container">
+            <div class="selected-makeup" v-show="videoEyeshadowIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('eyeshadow')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoEyeshadowIcon" class="selected-simu-img fadeIn" :src="eyeshadowSourceIcon" />
+
+              </div>
+            </div>
+
+            <div class="selected-makeup" v-show="videoBlushIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('blush')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoBlushIcon" class="selected-simu-img fadeIn" :src="blushSourceIcon" />
+
+              </div>
+            </div>
+
+            <div class="selected-makeup" v-show="videoFoundationIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('foundation')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoFoundationIcon" class="selected-simu-img fadeIn" :src="foundationSourceIcon" />
+
+              </div>
+            </div>
+
+            <div class="selected-makeup" v-show="videoLipstickIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('lipstick')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoLipstickIcon" class="selected-simu-img fadeIn" :src="lipstickSourceIcon" />
+
+              </div>
+            </div>
+
+            <div class="selected-makeup" v-show="videoEyelinerIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('eyeliner')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoEyelinerIcon" class="selected-simu-img fadeIn" :src="eyelinerSourceIcon" />
+
+              </div>
+            </div>
+
+            <div class="selected-makeup" v-show="videoConcealerIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('concealer')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoConcealerIcon" class="selected-simu-img fadeIn" :src="concealerSourceIcon" />
+
+              </div>
+            </div>
+            <div class="selected-makeup" v-show="videoLensIcon">
+              <div class="circle-img">
+                <div class="cancel-lip-simulated">
+                  <a @click="handleCancelVideo('lens')" class="cancel-icon"><i class="fas fa-times"></i></a>
+                </div>
+                <img v-if="videoLensIcon" class="selected-simu-img fadeIn" :src="lensSourceIcon" />
+
+              </div>
+            </div>
+
+          </div> -->
+
+          <!-- <div class="selected-makeup" v-show="!videoFeed">
+            <div class="circle-img">
+              <div v-if="getMakeupSimulator" class="cancel-lip-simulated">
+                <a @click="handleCancelSimulated" class="cancel-icon"><i class="fas fa-times"></i></a>
+              </div>
+              <img v-if="getMakeupSimulator" class="selected-simu-img fadeIn"
+                :src="getMakeupSimulator.api_image_link ? splitImageURL(getMakeupSimulator.api_image_link) : getMakeupSimulator.image_link" />
+              <div v-show="!getMakeupSimulator" class="selected-simu-img empty">
+                <i class="fas fa-magic"></i>
+              </div>
+            </div>
+
+
+          </div> -->
+          <div class="butts2">
+
+            <div class="level-lip-bar" v-if="simulatedState && getMakeupSimulator && !loadingState">
+
+              <button type="button" class="level-btn" @click="makeupSimulatedLevel(0)"
+                :class="{ selectedLevel: simulatedLevel === 0 }" :style="[
+              getMakeupSimulator
+                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
+                : '',
+            ]"></button>
+              <button type="button" class="level-btn medium" @click="makeupSimulatedLevel(1)"
+                :class="{ selectedLevel: simulatedLevel === 1 }" :style="[
+              getMakeupSimulator
+                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
+                : '',
+            ]"></button>
+              <button type="button" class="level-btn light" @click="makeupSimulatedLevel(2)"
+                :class="{ selectedLevel: simulatedLevel === 2 }" :style="[
+              getMakeupSimulator
+                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
+                : '',
+            ]"></button>
             </div>
           </div>
 
-          <div v-show="videoFeed">
-            <img :class="{ filterImg: loadingState }" class="user-img" v-if="videoFeed" :src="vedioFeedSource" />
+          <div class="butts">
+
+            <div class="change-cam">
+              <UploadImageModal class="change-img-btn" titleButton="تعویض تصویر"></UploadImageModal>
+              <button class="change-cam-btn" v-show="!videoFeed" @click="openCam"> دوربین</button>
+              <button class="change-cam-btn" v-show="videoFeed" @click="closeCam">بستن دوربین</button>
+            </div>
+            <div class="img-profile-btn">
+            </div>
+
           </div>
 
-
         </div>
-        <Loading :loadingState="loadingState"></Loading>
+        <div class="col-4">
+          <SimulatorTab></SimulatorTab>
+        </div>
+
+
       </div>
-
-    <div class="all-container">
-      <div class="selected-makeup" v-show="videoEyeshadowIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('eyeshadow')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoEyeshadowIcon" class="selected-simu-img fadeIn" :src="eyeshadowSourceIcon" />
-
-        </div>
-      </div >
-
-      <div class="selected-makeup" v-show="videoBlushIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('blush')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoBlushIcon" class="selected-simu-img fadeIn" :src="blushSourceIcon" />
-    
-        </div>
-      </div>
-      
-      <div class="selected-makeup" v-show="videoFoundationIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('foundation')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoFoundationIcon" class="selected-simu-img fadeIn" :src="foundationSourceIcon" />
-
-        </div>
-      </div>
-
-      <div class="selected-makeup" v-show="videoLipstickIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('lipstick')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoLipstickIcon" class="selected-simu-img fadeIn" :src="lipstickSourceIcon" />
-
-        </div>
-      </div>
-
-      <div class="selected-makeup" v-show="videoEyelinerIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('eyeliner')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoEyelinerIcon" class="selected-simu-img fadeIn" :src="eyelinerSourceIcon" />
-
-        </div>
-      </div>
-
-      <div class="selected-makeup" v-show="videoConcealerIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('concealer')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoConcealerIcon" class="selected-simu-img fadeIn" :src="concealerSourceIcon" />
-
-        </div>
-      </div>
-      <div class="selected-makeup" v-show="videoLensIcon">
-        <div class="circle-img">
-          <div class="cancel-lip-simulated">
-            <a @click="handleCancelVideo('lens')" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="videoLensIcon" class="selected-simu-img fadeIn" :src="lensSourceIcon" />
-
-        </div>
-      </div>
-
-</div>
-
-      <div class="selected-makeup" v-show="!videoFeed">
-        <div class="circle-img">
-          <div v-if="getMakeupSimulator" class="cancel-lip-simulated">
-            <a @click="handleCancelSimulated" class="cancel-icon"><i class="fas fa-times"></i></a>
-          </div>
-          <img v-if="getMakeupSimulator" class="selected-simu-img fadeIn"
-            :src="getMakeupSimulator.api_image_link ? splitImageURL(getMakeupSimulator.api_image_link) : getMakeupSimulator.image_link" />
-          <div v-show="!getMakeupSimulator" class="selected-simu-img empty">
-            <i class="fas fa-magic"></i>
-          </div>
-        </div>
-        <div class="level-lip-bar" v-if="simulatedState && getMakeupSimulator && !loadingState">
-          <button type="button" class="level-btn" @click="makeupSimulatedLevel(0)"
-            :class="{ selectedLevel: simulatedLevel === 0 }" :style="[
-              getMakeupSimulator
-                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
-                : '',
-            ]"></button>
-          <button type="button" class="level-btn medium" @click="makeupSimulatedLevel(1)"
-            :class="{ selectedLevel: simulatedLevel === 1 }" :style="[
-              getMakeupSimulator
-                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
-                : '',
-            ]"></button>
-          <button type="button" class="level-btn light" @click="makeupSimulatedLevel(2)"
-            :class="{ selectedLevel: simulatedLevel === 2 }" :style="[
-              getMakeupSimulator
-                ? { background: 'rgb' + getMakeupSimulator.rgb_value + ' !important' }
-                : '',
-            ]"></button>
-        </div>
-      </div>
-
-
-
-      <SimulatorTab></SimulatorTab>
     </div>
   </div>
 </template>
@@ -273,8 +293,8 @@
       createFormData(form) {
         console.log("colorsssssssssss")
         console.log(form.r_value)
-        var data ={
-          'user_id' :form.userID,
+        var data = {
+          'user_id': form.userID,
           'r_value': form.r_value,
           'g_value': form.g_value,
           'b_value': form.b_value
@@ -284,8 +304,8 @@
       createFormDataLip(form) {
         console.log("colorsssssssssss")
         console.log(form.r_value)
-        var data ={
-          'user_id' :form.userID,
+        var data = {
+          'user_id': form.userID,
           'r_value': form.r_value,
           'g_value': form.g_value,
           'b_value': form.b_value,
@@ -523,8 +543,8 @@
               b_value: parseInt(this.spilitRgbColor(val.rgb_value)[2]),
             };
 
-            if (this.getMakeupState === 'Lip'){
-              
+            if (this.getMakeupState === 'Lip') {
+
               let form2 = {
                 gloss: val.gloss,
                 l_type: val.l_type
@@ -532,7 +552,7 @@
               console.log("///////////////////////////////")
               console.log(form)
               form = Object.assign(form2, form)
-              }
+            }
             console.log(val.rgb_value);
             console.log(this.videoFeed);
 
@@ -557,14 +577,14 @@
               } else if (this.getMakeupState === 'Lip') {
                 console.log("sim lip")
                 await this.$store.dispatch('loadLipSimulated', form);
-              }else if (this.getMakeupState === 'Eyeliner') {
+              } else if (this.getMakeupState === 'Eyeliner') {
                 await this.$store.dispatch('loadEyelinerSimulated', form);
-              }else if (this.getMakeupState === 'Concealer') {
+              } else if (this.getMakeupState === 'Concealer') {
                 await this.$store.dispatch('loadConcealerSimulated', form);
-              }else if (this.getMakeupState === 'Lens') {
+              } else if (this.getMakeupState === 'Lens') {
                 await this.$store.dispatch('loadLensSimulated', form);
               }
-              
+
 
               if (this.getMakeupSimulatedImage) {
                 this.imageSimulated = 'data:image/png;base64, ' + this.getMakeupSimulatedImage[1];
@@ -620,21 +640,24 @@
     outline: none;
   }
 
-  .simulator-container {
-    margin: 2rem;
-  }
 
-  .simulator-img {
-    margin-bottom: 1rem;
-  }
-  .all-container{
+
+  .all-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    ;
     justify-content: center;
   }
+
   .selected-makeup {
     display: flex;
     justify-content: center;
+  }
+
+  .container2 {
+    display: flex;
+    justify-content: center;
+    width: 800px // width: 100%
   }
 
   .circle-img {
@@ -642,7 +665,7 @@
     width: 8rem;
     height: 8rem;
     background: #ffffff;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -673,8 +696,9 @@
     justify-content: flex-end;
     margin-top: 1rem;
   }
+
   .change-cam {
-    padding-top:  30px;
+    padding-top: 30px;
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -683,30 +707,67 @@
   }
 
   .change-cam-btn {
-     margin-top:  10px;
-  background: #ffffff;
-  border: 3px solid #d1d1d1;
-  border-radius:  0 30px 30px 0px;
-  width: 180px;
-  padding: 0.5rem 1rem;
-  color: #737373;
-}
+    margin-top: 10px;
+    background: rgb(255, 229, 221);
+    background: linear-gradient(90deg, rgba(255, 229, 221, 1) 0%, rgba(255, 188, 185, 1) 100%);
+    border: 0px solid #d1d1d1;
+    border-radius: 0 30px 30px 0px;
+    width: 180px;
+    padding: 0.5rem 1rem;
+    color: #bb5050;
+  }
 
   .user-img-link {
     cursor: pointer;
     color: #2f4858;
   }
 
+  .container {
+    margin-top: 30px;
+    max-width: 1400px;
+    border: 1px solid rgb(231, 231, 231);
+  }
+
+  .butts {
+    position: absolute;
+    top: 70vh
+  }
+
+  .butts2 {
+    position: absolute;
+    top: 2vh
+  }
+
+  .col-4 {
+    padding: 0px;
+
+  }
+
+  .col-8 {
+    position: relative;
+    padding: 0px;
+    height: 90vh;
+  }
+
   .img-container {
-    background: #ffffff;
-    padding: 2rem;
-    border-radius: 1rem;
-    border: 1px solid #cfcfcf;
+    // margin-top: 44px;
+    // display: flex;
+    // // justify-content: center;
+    // align-items: center;
+    // overflow: hidden;
+    // width: 100%;
   }
 
   .user-img {
-    height: 35rem;
-    max-width: 100%;
+    // width:60vw;
+    // height: 35rem;
+    object-fit: cover;
+
+    width: 100%;
+    height: 90vh;
+    // max-height: 100%;
+    // display: block; 
+    // min-height: 100%
   }
 
   .filterImg {
@@ -714,12 +775,7 @@
     -webkit-filter: blur(2px);
   }
 
-  .simulator-img {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+
 
   .selected-simu-img {
     border-radius: 50%;
@@ -743,13 +799,20 @@
   }
 
   .level-lip-bar {
+    // padding-top: 30px;
+    // position: absolute;
+    padding: 30 px;
+    margin-left: 10px;
+    border-radius: 20px;
     display: flex;
-    flex-direction: column;
+    background: #fff;
+    flex-direction: row;
     justify-content: center;
   }
 
   .level-btn {
     margin-bottom: 1rem;
+    margin: 15px;
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
@@ -766,55 +829,5 @@
 
   .selectedLevel {
     border-color: #000 !important;
-  }
-
-  @media screen and (max-width: 720px) {
-    .user-img {
-      height: 20rem;
-    }
-  }
-
-  @media screen and (max-width: 500px) {
-    .user-img {
-      height: 15rem;
-    }
-
-    .simulator-container {
-      margin: 0.3rem;
-    }
-
-    .circle-img {
-      width: 5rem;
-      height: 5rem;
-      margin: 0.2rem;
-    }
-
-    .selected-simu-img {
-      height: 3rem;
-      font-size: 2rem;
-    }
-
-    .cancel-lip-simulated {
-      margin-top: 1;
-      margin-right: -2.5rem;
-    }
-
-    .cancel-icon {
-      font-size: 0.7rem;
-    }
-
-    .level-btn {
-      margin-bottom: 0.5rem;
-      height: 15px;
-    }
-
-    .img-profile-btn {
-      margin-top: 0.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .user-img-link {
-      font-size: 0.7rem;
-    }
   }
 </style>

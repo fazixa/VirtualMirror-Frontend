@@ -1,8 +1,8 @@
 <template>
   <div class="slide-container">
-    <vueper-slides
+    <!-- <vueper-slides
       class="no-shadow carousel-width"
-      :visible-slides="4"
+      :visible-slides="1"
       slide-multiple
       :gap="1"
       :slide-ratio="1 / 4"
@@ -40,20 +40,52 @@
               </button>
             </div></div></template
       ></vueper-slide>
-    </vueper-slides>
+    </vueper-slides> -->
+
+
+<div id="slide-container" class="scrollc">
+  <div v-for="(i, index) in list" :key="index">
+    <template class="content-container" >
+          <div class="content-detail">
+            <div @click="selectedSimulated(i)" class="content-wrapper content-item">
+              <ItemCard
+                class="transition-none"
+                :simulatedId="simulatedId"
+                :rgbValue="rgbValue"
+                :item="i"
+                :simulatorState="simulatorState"
+              ></ItemCard>
+             
+            </div>
+            <!-- <div class="like-tab">
+              <button
+                type="button"
+                class="like-btn border-red"
+                @click="handleItemUnliked(i)"
+                data-toggle="tooltip"
+                data-placement="bottom"
+                title="Unlike"
+              >
+                <span><i class="like-icon heart-red fas fa-heart"></i></span>
+              </button>
+            </div> -->
+            
+            </div></template
+      ><br>
+  </div>
+</div>
   </div>
 </template>
 
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides';
+
 import ItemCard from '@/components/makeupRef/ItemCard.vue';
 import 'vueperslides/dist/vueperslides.css';
 import { mapGetters } from 'vuex';
 
 export default {
   components: {
-    VueperSlides,
-    VueperSlide,
+
     ItemCard,
   },
   props: {
@@ -161,8 +193,29 @@ export default {
 
 <style scoped>
 .slide-container {
+  height: 70vh;
+  
   justify-content: center;
   display: flex;
+  overflow:auto;
+}
+
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+	background-color: #ffe7cb;
+  border: 2px solid #c98fa2;
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #ffe7cb;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #ffe7cb;
 }
 
 .transition-none:hover {
@@ -181,7 +234,7 @@ export default {
 .content-item {
   width: fit-content;
   cursor: pointer;
-  height: 20rem;
+  height: 18rem;
 }
 
 .content {

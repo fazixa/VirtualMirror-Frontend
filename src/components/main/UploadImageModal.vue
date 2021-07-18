@@ -351,12 +351,13 @@ button {
 }
 
 .change-img-link {
-  background: #ffffff;
-  border: 3px solid #d1d1d1;
+  background: rgb(255,229,221);
+  background: linear-gradient(90deg, rgba(255,229,221,1) 0%, rgba(255,188,185,1) 100%);
+  border: 0px solid #d1d1d1;
   border-radius:  0 30px 30px 0px;
   width: 180px;
   padding: 0.5rem 1rem;
-  color: #737373;
+  color: #bb5050;
 }
 
 .loading-bar {

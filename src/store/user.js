@@ -8,7 +8,7 @@ export default {
     userProfile: {
       userID: 1,
       username: 'nana',
-      userImgURL: 'https://images.squarespace-cdn.com/content/v1/5aa928d52714e59ff668dc6f/1597620102289-8SOI82N2AQ1GJ95AW9TQ/ke17ZwdGBToddI8pDm48kP9SUFcrIrZ2i8ygGjurrtB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UXehz5hAMqtGS8nPCETVtPp90JtVrWJCQpTjiHONNB6TNtaSsYFyFGUm_eZioT9-3g/london-beauty-editorial-photographer-1.jpg?format=650w',
+      userImgURL: 'https://www.matrix.com/~/media/matrix%20us%20media%20library/blogs/2018may/pink-hair/pink-hair-color-ideas.jpg',
       likedFoundation: [
         {
             _id: "6062debbd318f9caf9a3be65",
@@ -517,22 +517,7 @@ export default {
             '',
         },
 
-        {
-          _id: '6000105304026944b4ad1741',
-          brand: 'Romantic',
-          serie: 'Liquid Eyeliner',
-          price: '10.0',
-          image_link:
-            'https://i5.walmartimages.com/asr/59108a41-b8ec-47ef-a63e-264cf43f8ab6.81f7ff5103eb75ef3e2b48c1c6e595b8.png',
-          product_link:
-            'https://www.ipsy.com/product/p-jyyx1tpm5sqskr7',
-          category: null,
-          color_name: 'Purple',
-          rgb_value: '(98, 43, 117)',
-          deltaE: 6.239,
-          api_image_link:
-            '',
-        },
+     
         
       ],
     }
